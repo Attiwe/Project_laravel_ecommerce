@@ -103,18 +103,18 @@ class ProductResource extends Resource
                         ->relationship('brand', 'name'),
 
                       Section::make('Status')->schema([
-                            Toggle::make('in_stock') // مخزون
+                            Toggle::make('in_stock') 
                     ->required()
                     ->default(true),
                             
-                    Toggle::make(' 	is_active ')//غير نشط 
+                    Toggle::make(' 	is_active ')
                     ->required()
                     ->default(true),
                        
-                    Toggle::make('is_featured ')// هل هذه ميزة
+                    Toggle::make('is_featured ')  
                     ->required(),
 
-                    Toggle::make('on_sale')//  معروض للبيع
+                    Toggle::make('on_sale') 
                     ->required(),
 
                     ])   
