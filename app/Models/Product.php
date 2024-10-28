@@ -18,19 +18,18 @@ class Product extends Model
          'on_sale'         
 ];
 
-//   مفيدة جدًا في تحويل القيم من قاعدة البيانات إلى النوع المناسب تلقائيًا عند جلب البيانات   $castsخاصية 
-   protected $casts = ['images' => 'array'];// explan in the Notes
+    protected $casts = ['images' => 'array']; 
 
    public function category(){
-    return $this->belongsTo(Category::class); // العلاقة belongsTo تُشير إلى أن هذا الموديل (مثل Product) ينتمي إلى كائن واحد من موديل آخر (مثل Category).
+    return $this->belongsTo(Category::class); 
    }
 
    public function brand(){
-    return $this->belongsTo(Brand::class); // العلاقة belongsTo تُشير إلى أن هذا الموديل (مثل Product) ينتمي إلى كائن واحد من موديل آخر (مثل Category).
+    return $this->belongsTo(Brand::class);  
    }
 
    public function orderItem(){
-    return $this->belongsTo(OrderItem::class); // العلاقة belongsTo تُشير إلى أن هذا الموديل (مثل Product) ينتمي إلى كائن واحد من موديل آخر (مثل Category).
+    return $this->belongsTo(OrderItem::class); 
    }
 
 }
