@@ -28,7 +28,7 @@ Route::get('/products', ProductsPage::class);
 
 Route::get('/cart', CartPage::class);
 
-Route::get('/products/{slug}', ProductDetailPage::class);//(slug === id) into page ProductDetailPage
+Route::get('/products/{slug}', ProductDetailPage::class); 
 
 Route::get('/checkout', CheckoutPage::class);
 
