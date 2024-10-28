@@ -49,9 +49,9 @@ use Number;
                        ->required()
                        ->preload(),
                      
-                       Select::make('payment_method')//طريقة الدفع
+                       Select::make('payment_method')    
                         ->options([
-                            'cod'    => 'cash on delivery',//الدفع عند التسليم
+                            'cod'    => 'cash on delivery',  
                             'stripe' => 'stripe',
                             'Paypal' => 'paypal',
                         ])
@@ -59,9 +59,9 @@ use Number;
                         @Select::make('payment_status')
                         ->options
                         ([
-                            'paid'   => 'Paid', //مدفوع
-                            'pending'=> 'Pending',// قيد الانتظار
-                            'failed' => 'Failed' ,//فشل
+                            'paid'   => 'Paid', 
+                            'pending'=> 'Pending',  
+                            'failed' => 'Failed' ,
                         ])
                         ->default('pending')
                         ->required(),
@@ -102,7 +102,7 @@ use Number;
                             'saudl ' =>' Riyal',
                          ]),
                           
-                         Select::make('Shiping_method')//طريقة الشحن
+                         Select::make('Shiping_method')    
                          ->required()
                          ->options([
                             'fedex'  => 'FedEx',
@@ -116,7 +116,7 @@ use Number;
                 ])->columns(2),
 
                 Section::make('Order Items')->schema([
-                    Repeater::make('items') //التكرار
+                    Repeater::make('items')  
                     ->relationship()
                     ->schema([
                         Select::make('product_id')
@@ -146,7 +146,7 @@ use Number;
                         TextInput::make('unit_amount')
                         ->numeric()
                         ->required()
-                        ->disabled()//لتعطيل حقل معين في النموذج   Filament  تُستخدم 
+                        ->disabled() 
                         ->dehydrated()
                         ->columnSpan(3),
                         
@@ -165,22 +165,19 @@ use Number;
                         ->content(function(Get $get, Set $set) {
                             $total = 0;
 
-                            // جلب محتويات الـ Repeater
-                            if (!$repeaters = $get('items')) {
+                             if (!$repeaters = $get('items')) {
                                 return $total;  
                             }
 
-                            // حساب المجموع الإجمالي
-                            foreach($repeaters as $key => $repeater) {
+                             foreach($repeaters as $key => $repeater) {
                                 
  
                                 $total += $get("items.{$key}.total_amount");
                             }
-                            $set('grand_total' , $total ); //Not Not
-                            // return $total .'EGP'; // إعادة المجموع النهائي
+                            $set('grand_total' , $total );   
                             return Number::currency($total, 'EGP' );    
                         }),
-                        Hidden::make('grand_total') //Not Not
+                        Hidden::make('grand_total') 
                         ->default(0)
 
                         ])
@@ -197,7 +194,7 @@ use Number;
                  TextColumn::make('user.name') 
                  ->label('Custmer')
                  ->searchable()
-                 ->sortable(),//work icon 
+                 ->sortable(),  
 
                  TextColumn::make('grand_total') 
                  ->numeric()
