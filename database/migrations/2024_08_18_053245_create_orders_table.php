@@ -17,9 +17,9 @@ return new class extends Migration
             $table->decimal('grand_total',10,2)->nullable();
             $table->string('payment_method')->nullable(); 
             $table->string('payment_status')->nullable();
-            $table->enum('status', ['new', 'processing', 'canceled','shipped','deliverd'])->default('new'); // حقل Enum
-            $table->string('currency')->nullable();//type mony
-            $table->decimal('shipping_amount',10,2 )->nullable();//salary shipping
+            $table->enum('status', ['new', 'processing', 'canceled','shipped','deliverd'])->default('new');  
+            $table->string('currency')->nullable(); 
+            $table->decimal('shipping_amount',10,2 )->nullable(); 
             $table->string('shiping_method')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
