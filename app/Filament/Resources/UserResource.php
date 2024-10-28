@@ -37,15 +37,11 @@ class UserResource extends Resource
             ->unique(ignoreRecord:true)
             ->required(),
 
-            Forms\components\DateTimePicker::make('email_verified_at')//  يشير إلى وقت وتاريخ التحقق من البريد الإلكتروني -'email_verified_at'
+            Forms\components\DateTimePicker::make('email_verified_at') 
                ->label('Email Verified At')
                ->default(now()),
             
-            // Forms\Components\TextInput::make('password')
-            // ->password()
-            // ->dehydrated(fn($state) =>filled($state))
-            // ->required(fn( Page $livewire): bool => $livewire instanceof CreateRecord) // Not Know
-
+          
             Forms\Components\TextInput::make('password')
             ->password()
             ->dehydrated(fn($state) => filled($state))
@@ -72,9 +68,7 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
-                // Tables\Actions\ViewAction::make(),
-                // Tables\Actions\DeleteAction::make(),//الشكل ده بيعرضهم جب بعض 
+              
 
                 Tables\Actions\ActionGroup::make([
 
