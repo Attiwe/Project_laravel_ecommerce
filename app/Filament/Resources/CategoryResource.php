@@ -47,7 +47,7 @@ class CategoryResource extends Resource
                              TextInput::make('slug')
                              ->maxLength(255)
                              ->required()
-                             ->dehydrated()//تشير إلى أن القيمة الخاصة بالحقل يجب أن تُخزن فقط عند تقديم النموذج وليس أثناء التفاعل مع واجهة المستخدم
+                             ->dehydrated()   
                              ->unique(Category::class,'slug' ,ignoreRecord: true),
                     ]),
                       
