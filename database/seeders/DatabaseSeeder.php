@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create test user only if it doesn't already exist
-        User::firstOrCreate(
-            ['email' => 'test@example.com'],
-            ['name'  => 'Test User', 'password' => bcrypt('password')]
-        );
+        // User::firstOrCreate(
+        //     ['email' => 'test@example.com'],
+        //     ['name'  => 'Test User', 'password' => bcrypt('password')]
+        // );
 
         // Generate Arabic categories, brands, and products
         Category::factory(5)->create();
