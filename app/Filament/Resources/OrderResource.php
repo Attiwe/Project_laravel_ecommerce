@@ -192,26 +192,46 @@ use Number;
         return $table
             ->columns([
                  TextColumn::make('user.name') 
-                 ->label('Custmer')
+                 ->label('العميل')
                  ->searchable()
-                 ->sortable(),  
+                 ->sortable(),
+
+                 // ─── رقم هاتف العميل (مهم لتأكيد الطلب بالواتساب) ───
+                 TextColumn::make('address.phone')
+                 ->label('📞 رقم الهاتف')
+                 ->searchable()
+                 ->copyable()
+                 ->copyMessage('تم نسخ الرقم!')
+                 ->placeholder('—'),
 
                  TextColumn::make('grand_total') 
+                 ->label('الإجمالي')
                  ->numeric()
-                  ->sortable()
+                 ->sortable()
                  ->money('EGP'),
                  
                  TextColumn::make('payment_method') 
-                  ->searchable()
-                 ->sortable(),
-
-                 TextColumn::make('payment_status') 
+                 ->label('طريقة الدفع')
                  ->searchable()
-                ->sortable(),
-                    
-                TextColumn::make('currency')
-                ->sortable()
-                ->searchable(),
+                 ->sortable()
+                 ->badge()
+                 ->color(fn (string $state): string => match ($state) {
+                     'cod'    => 'warning',
+                     'stripe' => 'info',
+                     default  => 'gray',
+                 }),
+
+                 TextColumn::make('payment_status')
+                 ->label('حالة الدفع')
+                 ->searchable()
+                 ->sortable()
+                 ->badge()
+                 ->color(fn (string $state): string => match ($state) {
+                     'paid'    => 'success',
+                     'pending' => 'warning',
+                     'failed'  => 'danger',
+                     default   => 'gray',
+                 }),
                 
                 
                 
@@ -241,9 +261,25 @@ use Number;
                 
                 ])
                 ->filters([
-                    
-                  
-                  
+                    // فلتر حالة الطلب — سهّل العثور على الطلبات الجديدة
+                    SelectFilter::make('status')
+                        ->label('حالة الطلب')
+                        ->options([
+                            'new'        => '🆕 جديد',
+                            'processing' => '⚙️ قيد التأكيد',
+                            'shipped'    => '🚚 تم الشحن',
+                            'deliverd'   => '✅ تم التسليم',
+                            'canceled'   => '❌ ملغي',
+                        ]),
+
+                    // فلتر حالة الدفع
+                    SelectFilter::make('payment_status')
+                        ->label('حالة الدفع')
+                        ->options([
+                            'pending' => '⏳ في انتظار التأكيد',
+                            'paid'    => '✅ مدفوع',
+                            'failed'  => '❌ فشل',
+                        ]),
             ])
             ->actions([
 
