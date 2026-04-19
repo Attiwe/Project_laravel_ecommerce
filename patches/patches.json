@@ -1,0 +1,5 @@
+{
+    "laravel/framework": {
+        "Fix: ContainerCommandLoader must call setLaravel() on lazily-resolved commands to prevent 'Call to a member function make() on null' error": "patches/laravel-framework-container-command-loader-set-laravel.patch"
+    }
+}

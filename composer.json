@@ -6,9 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "cweagans/composer-patches": "^2.0",
         "filament/filament": "^3.2",
         "jantinnerezo/livewire-alert": "^3.0",
-        "laravel/framework": "11.44.1",
+        "laravel/framework": "^11.44",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "stripe/stripe-php": "^20.0"
@@ -36,6 +37,7 @@
     },
     "scripts": {
         "post-autoload-dump": [
+            "App\\Console\\ComposerScripts::postAutoloadDump",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade"
@@ -55,6 +57,9 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "composer-patches": {
+            "patch-file": "patches/patches.json"
         }
     },
     "config": {
@@ -63,7 +68,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "cweagans/composer-patches": true
         }
     },
     "minimum-stability": "stable",
