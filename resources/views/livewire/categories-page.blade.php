@@ -9,7 +9,7 @@
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-center">
             <div class="flex items-center">
-              <img class="h-[5rem] w-[5rem]" src=" {{ url('storage', $category->image )}}" alt="Image Description">
+              <img class="h-[5rem] w-[5rem]" src="{{ $category->image }}" alt="Image Description">
               <div class="ms-3">
                 <h3 class="group-hover:text-blue-600 text-2xl font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
                   {{ $category->name}}

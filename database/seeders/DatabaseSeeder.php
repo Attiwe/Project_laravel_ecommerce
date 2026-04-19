@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Product;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create test user only if it doesn't already exist
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            ['name'  => 'Test User', 'password' => bcrypt('password')]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Generate Arabic categories, brands, and products
+        Category::factory(5)->create();
+        Brand::factory(5)->create();
+        Product::factory(20)->create();
     }
 }
