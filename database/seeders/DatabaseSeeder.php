@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(UserSeeder::class);
+
         // Create test user only if it doesn't already exist
         // User::firstOrCreate(
         //     ['email' => 'test@example.com'],
@@ -23,8 +25,8 @@ class DatabaseSeeder extends Seeder
         // );
 
         // Generate Arabic categories, brands, and products
-        Category::factory(5)->create();
-        Brand::factory(5)->create();
-        Product::factory(20)->create();
+        // Category::factory(5)->create();
+        // Brand::factory(5)->create();
+        // Product::factory(20)->create();
     }
 }
